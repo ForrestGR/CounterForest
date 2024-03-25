@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
 
 
 
-    private void OnBecameInvisible()
+    private void OnBecameInvisible()        //when game objects is out of screen
     {
         Destroy(gameObject);
     }
