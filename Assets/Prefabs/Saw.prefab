@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3095770938815132910}
   m_Layer: 0
   m_Name: Saw
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,3 +164,5 @@ MonoBehaviour:
   health: 100
   deathEffect: {fileID: 1755349173569476, guid: 200511e519389a94297691e39416e53f,
     type: 3}
+  player: {fileID: 0}
+  moveSpeed: 5
