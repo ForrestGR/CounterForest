@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour
 
     public GameObject bulletPrefab;
 
+    public Transform playerTransform;
 
 
     void Update()
@@ -17,6 +18,9 @@ public class Weapon : MonoBehaviour
         {
             Shoot();
         }
+
+        AimTowardsPlayer();
+
     }
 
 
@@ -25,4 +29,19 @@ public class Weapon : MonoBehaviour
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
+
+
+    void AimTowardsPlayer()
+    {
+        if (playerTransform != null)
+        {
+            // Berechnen Sie die Richtung weg vom Player
+            Vector2 direction = firePoint.position - playerTransform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            firePoint.rotation = Quaternion.Euler(0, 0, angle);
+        }
+
+    }
+
+
 }

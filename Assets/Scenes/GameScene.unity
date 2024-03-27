@@ -392,7 +392,7 @@ Transform:
   m_GameObject: {fileID: 480411923}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 1.17, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.8172059, y: 1.8172059, z: 0.45430148}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -415,6 +415,7 @@ MonoBehaviour:
   firePoint: {fileID: 1264547773}
   bulletPrefab: {fileID: 4856699235134260643, guid: 6c6b725182d60b042ace9c220b8d9fc8,
     type: 3}
+  playerTransform: {fileID: 480411927}
 --- !u!61 &480411929
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -636,7 +637,8 @@ MonoBehaviour:
   - {fileID: 9170167699015912547, guid: 62f4bc13f8051164fa285bf5fe45195e, type: 3}
   - {fileID: 6424670122765183145, guid: d053720b4d365c143a81d8bf5be3ca26, type: 3}
   spawnDelay: 2
-  spawnRadius: 5
+  spawnRectangleSize: {x: 14.67, y: 21.38}
+  minDistanceToPlayer: 5
   playerTransform: {fileID: 480411927}
 --- !u!4 &874923028
 Transform:
@@ -1175,7 +1177,7 @@ Transform:
   m_GameObject: {fileID: 1264547772}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.845, y: 0.299, z: 0}
+  m_LocalPosition: {x: 0.806, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

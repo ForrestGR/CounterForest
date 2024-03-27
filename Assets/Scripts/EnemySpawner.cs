@@ -4,28 +4,58 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject[] enemyPrefabs; // Ein Array von Gegner-Prefabs zum Spawnen
-    public float spawnDelay = 2f; // Verzögerung zwischen den Spawn-Vorgängen
-    public float spawnRadius = 5f; // Radius für zufällige Spawn-Positionen um den Spawner
-    public Transform playerTransform; // Referenz auf den Spieler, der verfolgt werden soll
+    public GameObject[] enemyPrefabs;
+    public float spawnDelay = 2f;
+    public Vector2 spawnRectangleSize = new Vector2(10f, 10f); // Größe des Rechtecks für das Spawnen
+    public float minDistanceToPlayer = 5f; // Mindestabstand zum Spieler
+    public Transform playerTransform;
+      
+
 
     private void Start()
     {
         StartCoroutine(SpawnEnemies()); // Startet die Coroutine zum Spawnen der Gegner
     }
 
+
+
     IEnumerator SpawnEnemies()
     {
-        while (true) // Eine Endlosschleife, die Gegner spawnen lässt
+        while (true)
         {
-            yield return new WaitForSeconds(spawnDelay); // Wartet für die festgelegte Verzögerungszeit
+            yield return new WaitForSeconds(spawnDelay);
 
-            Vector2 spawnPosition = Random.insideUnitCircle * spawnRadius + (Vector2)transform.position; // Erzeugt eine zufällige Position im definierten Radius um den Spawner
-            GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];  // Wählt ein zufälliges Gegner-Prefab aus
-            GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);  // Spawnt den Gegner an der berechneten Position
+            Vector2 spawnPosition = GenerateSpawnPosition();
+            GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+            GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity); // Diese Zeile speichert das instanziierte Objekt in einer lokalen Variable
 
-            // Setzt die Spielerreferenz im Enemy-Skript
-            enemy.GetComponent<Enemy>().player = playerTransform;
+            // Hier versuchen wir, das Enemy-Skript des instanziierten Objekts zu erhalten
+            Enemy enemyScript = enemy.GetComponent<Enemy>();
+            if (enemyScript != null) // Überprüfen, ob das Skript gefunden wurde
+            {
+                enemyScript.player = playerTransform; // Setzt die Spielerreferenz im Enemy-Skript
+            }
+            else
+            {
+                Debug.LogWarning("Enemy script not found on spawned enemy prefab, ensure it's attached.");
+            }
         }
     }
+
+    Vector2 GenerateSpawnPosition()
+    {
+        Vector2 spawnPosition;
+        do
+        {
+            float spawnX = Random.Range(-spawnRectangleSize.x / 2, spawnRectangleSize.x / 2);
+            float spawnY = Random.Range(-spawnRectangleSize.y / 2, spawnRectangleSize.y / 2);
+            spawnPosition = new Vector2(spawnX, spawnY) + (Vector2)playerTransform.position;
+        }
+        while (Vector2.Distance(spawnPosition, playerTransform.position) < minDistanceToPlayer);
+
+        return spawnPosition;
+    }
+
+    
+
 }
