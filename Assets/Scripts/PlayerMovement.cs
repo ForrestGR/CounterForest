@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movement;
     private bool facingRight = true; // Startausrichtung des Charakters
 
-    public float jump = 10;
 
     private void Start()
     {
@@ -25,10 +24,7 @@ public class PlayerMovement : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
         movement.Normalize();
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            rb.AddForce(new Vector2(rb.velocity.x, jump));
-        }
+
 
 
         // Den Charakter in Bewegungsrichtung ausrichten
