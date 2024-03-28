@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-
     public Transform firePoint;
-
     public GameObject bulletPrefab;
-
     public Transform playerTransform;
 
 
@@ -23,13 +20,10 @@ public class Weapon : MonoBehaviour
 
     }
 
-
-
     void Shoot()
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
-
 
     void AimTowardsPlayer()
     {
@@ -40,8 +34,5 @@ public class Weapon : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             firePoint.rotation = Quaternion.Euler(0, 0, angle);
         }
-
     }
-
-
 }
