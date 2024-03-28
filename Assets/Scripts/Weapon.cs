@@ -7,6 +7,18 @@ public class Weapon : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public Transform playerTransform;
+    public Rigidbody2D rb;
+
+    private PlayerMovement playerMovement;
+
+
+
+    private void Start()
+    {
+        // Stelle sicher, dass du eine Referenz zum PlayerMovement-Skript hast,
+        // das am Spieler-GameObject angebracht ist.
+        playerMovement = playerTransform.GetComponent<PlayerMovement>();
+    }
 
 
     void Update()
@@ -16,8 +28,9 @@ public class Weapon : MonoBehaviour
             Shoot();
         }
 
-        AimTowardsPlayer();
+        AimDirection();
 
+        Debug.Log(rb.velocity);
     }
 
     void Shoot()
@@ -25,14 +38,28 @@ public class Weapon : MonoBehaviour
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
-    void AimTowardsPlayer()
+    void AimDirection()
     {
-        if (playerTransform != null)
+        if (rb != null)
         {
-            // Berechnen Sie die Richtung weg vom Player
-            Vector2 direction = firePoint.position - playerTransform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            firePoint.rotation = Quaternion.Euler(0, 0, angle);
+            // Verwende die aktuelle Geschwindigkeit des Spielers, um die Richtung zu bestimmen
+            Vector2 direction = rb.velocity;
+            if (direction != Vector2.zero) // Prüfe, ob der Spieler sich bewegt
+            {
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                firePoint.rotation = Quaternion.Euler(0, 0, angle);
+            } 
+            else
+            {
+                if (playerMovement.GetFacingRight() == true)
+                {
+                    firePoint.right = Vector2.right;
+                }
+                else 
+                {
+                    firePoint.right = Vector2.left;
+                }
+            }
         }
     }
 }

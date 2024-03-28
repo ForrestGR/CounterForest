@@ -6,10 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
     // Variables
     public float moveSpeed = 5f;
-    public Rigidbody2D rb; // Referenz auf unser Rigidbody
+    public Rigidbody2D rb; // Referenz auf unseren Rigidbody/unseren Player
 
     private Vector2 movement;
-    private bool facingRight = true; // Startausrichtung des Charakters
+    private bool facingRight = true; //Startausrichtung des Charakters
 
 
     private void Start()
@@ -23,9 +23,6 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         movement.Normalize();
-
-
-
 
         // Den Charakter in Bewegungsrichtung ausrichten
         if (movement.x > 0 && !facingRight)
@@ -41,7 +38,8 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate() // Wird in einem festen Zeitintervall aufgerufen, unabhängig von der Bildwiederholrate
     {
         // Bewegung
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * movement);
+        rb.velocity = movement * moveSpeed;
     }
 
     void Flip()
@@ -51,5 +49,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
+    }
+
+
+
+    public bool GetFacingRight()
+    {
+        return facingRight;
     }
 }
