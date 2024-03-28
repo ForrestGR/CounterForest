@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        Flip();        
         rb = GetComponent<Rigidbody2D>();
     }
 
