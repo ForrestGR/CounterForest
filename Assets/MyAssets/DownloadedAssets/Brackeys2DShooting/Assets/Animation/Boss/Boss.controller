@@ -193,6 +193,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2.5
   attackRange: 3
+--- !u!114 &-830669162747165046
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c62772147e26e47a4dca733fcce538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1102 &-162446501483895237
 AnimatorState:
   serializedVersion: 6
@@ -508,7 +520,8 @@ AnimatorState:
   m_Transitions:
   - {fileID: 2768014399015563562}
   - {fileID: 6948286953126898512}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: -830669162747165046}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

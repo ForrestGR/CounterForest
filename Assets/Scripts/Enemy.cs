@@ -5,10 +5,21 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
-    public int health = 100;
+    public int maxHealth = 100;
+    public int currentHealth = 100;
+    
     public GameObject deathEffect;
     public Transform player; // Reference to the player's transform
     public float moveSpeed = 5f; // Speed at which the enemy moves towards the player
+
+
+    private void Start()
+    {
+        currentHealth = maxHealth;
+    }
+
+
+
 
     void Update()
     {
@@ -33,9 +44,9 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        currentHealth -= damage;
 
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }

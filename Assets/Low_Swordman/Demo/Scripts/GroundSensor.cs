@@ -13,7 +13,7 @@ public class GroundSensor : MonoBehaviour {
        
     }
 
- 
+    
 
     ContactPoint2D[] contacts = new ContactPoint2D[1];
 
