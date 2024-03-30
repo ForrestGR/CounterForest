@@ -29,8 +29,6 @@ public class Weapon : MonoBehaviour
         }
 
         AimDirection();
-
-        Debug.Log(rb.velocity);
     }
 
     void Shoot()
@@ -42,20 +40,20 @@ public class Weapon : MonoBehaviour
     {
         if (rb != null)
         {
-            // Verwende die aktuelle Geschwindigkeit des Spielers, um die Richtung zu bestimmen
-            Vector2 direction = rb.velocity;
-            if (direction != Vector2.zero) // Prüfe, ob der Spieler sich bewegt
+            Vector2 direction = rb.velocity.normalized; // Verwende die normalisierte Geschwindigkeit
+            if (direction != Vector2.zero)
             {
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 firePoint.rotation = Quaternion.Euler(0, 0, angle);
-            } 
+            }
             else
             {
+                // Feuerpunkt entsprechend der Spielerbewegung ausrichten
                 if (playerMovement.GetFacingRight() == true)
                 {
                     firePoint.right = Vector2.right;
                 }
-                else 
+                else
                 {
                     firePoint.right = Vector2.left;
                 }

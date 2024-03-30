@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
-{
-
+{ 
     public int maxHealth = 100;
     public int currentHealth = 100;
     
@@ -18,16 +17,10 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-
-
-
     void Update()
     {
         FollowPlayer();
     }
-
-
-
 
     void FollowPlayer()
     {

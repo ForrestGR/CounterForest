@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 movement;
     private bool facingRight = true; //Startausrichtung des Charakters
-
+        
 
     private void Start()
     {
