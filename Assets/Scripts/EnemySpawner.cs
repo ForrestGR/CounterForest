@@ -11,13 +11,10 @@ public class EnemySpawner : MonoBehaviour
     public Transform playerTransform;
       
 
-
     private void Start()
     {
         StartCoroutine(SpawnEnemies()); // Startet die Coroutine zum Spawnen der Gegner
     }
-
-
 
     IEnumerator SpawnEnemies()
     {
@@ -28,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
             Vector2 spawnPosition = GenerateSpawnPosition();
             GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
             GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity); // Diese Zeile speichert das instanziierte Objekt in einer lokalen Variable
-
+    
             // Hier versuchen wir, das Enemy-Skript des instanziierten Objekts zu erhalten
             Enemy enemyScript = enemy.GetComponent<Enemy>();
             if (enemyScript != null) // Überprüfen, ob das Skript gefunden wurde
@@ -55,7 +52,4 @@ public class EnemySpawner : MonoBehaviour
 
         return spawnPosition;
     }
-
-    
-
 }
