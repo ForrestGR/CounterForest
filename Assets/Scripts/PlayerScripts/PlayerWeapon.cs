@@ -15,8 +15,6 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-        // Stelle sicher, dass du eine Referenz zum PlayerMovement-Skript hast,
-        // das am Spieler-GameObject angebracht ist.
         playerMovement = playerTransform.GetComponent<PlayerMovement>();
     }
 
@@ -28,9 +26,7 @@ public class Weapon : MonoBehaviour
             Shoot();
         }
 
-        AimDirection();
-
-        Debug.Log(rb.velocity);
+        AimDirection();        
     }
 
     void Shoot()
