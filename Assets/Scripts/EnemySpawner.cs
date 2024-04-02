@@ -39,6 +39,8 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+
+
     Vector2 GenerateSpawnPosition()
     {
         Vector2 spawnPosition;
